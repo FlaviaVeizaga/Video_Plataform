@@ -1,21 +1,21 @@
 USE [master]
 GO
 
-/****** Object:  Database [Video_Plataform]    Script Date: 10-Dec-19 11:39:31 AM ******/
-CREATE DATABASE [Video_Plataform] ON  PRIMARY 
-( NAME = N'Video_Plataform', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL10_50.SQLEXPRESS\MSSQL\DATA\Video_Plataform.mdf' , SIZE = 2048KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+/****** Object:  Database [Videos]    Script Date: 10-Dec-19 11:39:31 AM ******/
+CREATE DATABASE [Videos] ON  PRIMARY 
+( NAME = N'Videos', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL10_50.SQLEXPRESS\MSSQL\DATA\Videos.mdf' , SIZE = 2048KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
  LOG ON 
-( NAME = N'Video_Plataform_log', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL10_50.SQLEXPRESS\MSSQL\DATA\Video_Plataform_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+( NAME = N'Videos_log', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL10_50.SQLEXPRESS\MSSQL\DATA\Videos_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
 GO
 
 IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
 begin
-EXEC [Video_Plataform].[dbo].[sp_fulltext_database] @action = 'enable'
+EXEC [Videos].[dbo].[sp_fulltext_database] @action = 'enable'
 end
 GO
 
 
-USE [Video_Plataform]
+USE [Videos]
 GO
 
 /****** Object:  Table [dbo].[Tbl_user]    Script Date: 10-Dec-19 11:40:58 AM ******/
@@ -27,10 +27,11 @@ GO
 
 CREATE TABLE [dbo].[Tbl_user](
 	[user_id] [int] NOT NULL,
-	[user_name] [varchar](50) NOT NULL,
+	[user_name] [varchar](15) NOT NULL,
 	[user_email] [varchar](50) NOT NULL,
 	[user_phonenumber] [varchar](8) NOT NULL,
 	[user_password] [nchar](10) NOT NULL,
+	[user_fullname] [varchar](50) NOT NULL,
  CONSTRAINT [PK_Tbl_user] PRIMARY KEY CLUSTERED 
 (
 	[user_id] ASC
@@ -38,7 +39,7 @@ CREATE TABLE [dbo].[Tbl_user](
 ) ON [PRIMARY]
 GO
 
-USE [Video_Plataform]
+USE [Videos]
 GO
 
 /****** Object:  Table [dbo].[Tbl_video]    Script Date: 10-Dec-19 11:41:09 AM ******/
@@ -67,7 +68,7 @@ GO
 ALTER TABLE [dbo].[Tbl_video] CHECK CONSTRAINT [FK_Tbl_video_Tbl_user]
 GO
 
-USE [Video_Plataform]
+USE [Videos]
 GO
 
 /****** Object:  Table [dbo].[Tbl_comentario]    Script Date: 10-Dec-19 11:41:22 AM ******/
@@ -103,7 +104,7 @@ GO
 ALTER TABLE [dbo].[Tbl_comentario] CHECK CONSTRAINT [FK_Tbl_comentario_Tbl_video]
 GO
 
-USE [Video_Plataform]
+USE [Videos]
 GO
 
 /****** Object:  Table [dbo].[Tbl_like]    Script Date: 10-Dec-19 11:41:35 AM ******/
@@ -117,6 +118,7 @@ CREATE TABLE [dbo].[Tbl_like](
 	[like_id] [int] NOT NULL,
 	[video_id] [int] NOT NULL,
 	[user_id] [int] NOT NULL,
+	[like_estatus] [bit], 
  CONSTRAINT [PK_Tbl_like] PRIMARY KEY CLUSTERED 
 (
 	[like_id] ASC

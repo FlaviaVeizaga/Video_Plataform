@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<app-config>
+	<db-config>
+		<db-engine>SqlServer</db-engine>
+		<db-host>localhost</db-host>
+		<db-port>1433</db-port>
+		<db-instance>SqlExpress</db-instance>
+		<db-name>Video</db-name>
+		<db-user>sa</db-user>
+		<db-password>123</db-password>
+	</db-config>
+</app-config>

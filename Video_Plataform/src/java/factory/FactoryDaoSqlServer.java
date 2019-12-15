@@ -8,8 +8,7 @@ import dao.*;
  */
 public class FactoryDaoSqlServer extends FactoryDao {
 
-    private FactoryDaoSqlServer() {
-        ;
+    private FactoryDaoSqlServer() {      
     }
 
     public static FactoryDao getFactoryInstance() {
@@ -36,8 +35,7 @@ public class FactoryDaoSqlServer extends FactoryDao {
 
     @Override
     public DaoLike getNewDaoLike() {
-       return new DaoLikeSqlserver();
+        return new DaoLikeSqlserver();
     }
-
 
 }

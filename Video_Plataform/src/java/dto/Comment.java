@@ -9,14 +9,16 @@ public class Comment {
     private String comment_body;
     private int user_id;
     private int video_id;
+    private String comment_date;
 
     public Comment() {
     }
 
-    public Comment(String comment_body, int user_id, int video_id) {
+    public Comment(String comment_body, int user_id, int video_id, String comment_date) {
         this.comment_body = comment_body;
         this.user_id = user_id;
         this.video_id = video_id;
+        this.comment_date = comment_date;
     }
 
     public int getComment_id() {
@@ -49,6 +51,14 @@ public class Comment {
 
     public void setVideo_id(int video_id) {
         this.video_id = video_id;
+    }
+    
+    public String getComment_date(){
+        return comment_date;
+    }
+    
+    public void setComment_date(String comment_date){
+        this.comment_date = comment_date;
     }
 
 }
